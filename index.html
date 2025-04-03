@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <title>Routing with OpenStreetMap</title>
+</head>
+<body>
+
+<div id="map" style="width: 100%; height: 100vh;"></div>
+
+<div class="search-widget">
+  <div class="search-header">
+    <span class="toggle-icon" onclick="toggleSearchWidget()">🔍</span>
+  </div>
+  <div class="search-container">
+    <div class="search-row">
+      <input type="text" id="startLocation" placeholder="Enter start location" class="search-input" oninput="autocompleteSearch('start')" />
+      <ul id="startSuggestions" class="suggestions"></ul>
+      <button onclick="searchLocation('start')" class="search-button">Set Start</button>
+    </div>
+    <div class="search-row">
+      <input type="text" id="endLocation" placeholder="Enter end location" class="search-input" oninput="autocompleteSearch('end')" />
+      <ul id="endSuggestions" class="suggestions"></ul>
+      <button onclick="searchLocation('end')" class="search-button">Set End</button>
+    </div>
+  </div>
+</div>
+<div class="report-widget">
+  <div class="report-header">
+    <span class="toggle-icon" onclick="toggleReportWidget()">⚠️</span>
+  </div>
+  <div class="report-container closed">
+    <textarea id="reportDescription" placeholder="Përshkruani kritiken tuaj..." class="report-input"></textarea>
+    <button id="submitReport" class="report-button">Dërgo Raportin</button>
+  </div>
+</div>
+
+<button onclick="saveRoute()" style="position: absolute; bottom: 20px; left: 10px; z-index: 1000;">Ruaj Rrugën</button>
+
+
+<!-- Analitika për vizitat -->
+<div id="analytics" class="analytics-section">
+  <h3>Statistikat e Përdoruesve</h3>
+  <p>Vizita: <span id="visitCountDisplay">0</span></p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script src="map.js"></script>
+</body>
+</html>

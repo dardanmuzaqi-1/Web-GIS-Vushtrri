@@ -1,0 +1,320 @@
+#map {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 1; /* Sigurohuni që të jetë mbi elementet e tjerë */
+}
+
+
+
+/* Pozicionimi specifik për butonat */
+#startRoutingIcon {
+  top: 10px; /* Butoni për aktivizimin e rutave */
+}
+
+#liveLocationToggle {
+  top: 60px; /* Butoni për lokacionin live, poshtë të parit */
+}
+
+}
+
+/* Kontejneri kryesor i kërkimit */
+.search-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Grupi i fushave dhe butonave */
+.search-group {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+/* Fusha e input-it */
+.search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  border-color: #4caf50;
+}
+
+/* Butoni */
+.search-button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: 1px solid #4caf50;
+  border-radius: 0 4px 4px 0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.search-button:hover {
+  background-color: #45a049;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-button:active {
+  background-color: #3e8e41;
+}
+
+/* Stilizimi bazë për search-widget */
+.search-widget {
+  position: absolute;
+  top: 70px; /* Poziciono lart, poshtë butonave të zoom-it */
+  left: 10px;
+  z-index: 1000;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Animacion për lëvizje të butë */
+}
+
+/* Kur widget largohet majtas */
+.search-widget.closed {
+  transform: translateX(-100%); /* Lëviz majtas jashtë ekranit */
+  opacity: 0.5;
+}
+
+/* Kur widget rikthehet */
+.search-widget.active {
+  transform: translateX(0); /* Rikthehet në pozicionin e saj origjinal */
+  opacity: 1;
+}
+
+
+/* Header-i i widget-it */
+.search-header {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+/* Ikona për hapjen/mbylljen */
+.toggle-icon {
+  font-size: 20px;
+  background: #4caf50;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.toggle-icon:hover {
+  background: #45a049;
+  transform: scale(1.1);
+}
+
+/* Kontejneri i kërkimit */
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Hapësira midis rreshtave për start dhe end */
+  position: relative; /* Siguron pozicionim relativ për autocomplete */
+  z-index: 1000; /* Prioritet mbi elementët e tjerë */
+}
+
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Hapësira midis input-it dhe butonit */
+  position: relative;
+}
+
+/* Fusha e input-it */
+.search-input {
+  flex: 1; /* Zgjatet për të mbushur hapësirën e mbetur */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  border-color: #4caf50;
+}
+
+/* Butonat */
+.search-button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.search-button:hover {
+  background-color: #45a049;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-button:active {
+  background-color: #3e8e41;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%; /* Vendoset poshtë input-it */
+  left: 0;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  list-style: none;
+  z-index: 1100; /* Vendos sugjerimet mbi çdo element tjetër */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.suggestions li:hover {
+  background-color: #f0f0f0;
+}
+
+.analytics-section {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+}
+.report-widget {
+  position: fixed;
+  bottom: 60px;
+  left: 20px;
+  z-index: 1000;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+.report-header {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.toggle-icon {
+  font-size: 20px;
+  background: #ff9800;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.toggle-icon:hover {
+  background: #e68a00;
+  transform: scale(1.1);
+}
+
+.report-container {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.report-container.active {
+  display: flex;
+}
+
+.report-input {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  resize: none;
+}
+
+.report-button {
+  padding: 10px 15px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.report-button:hover {
+  background-color: #e68a00;
+}
+
+.custom-controls {
+  display: flex;
+  flex-direction: column; /* Vendos ikonat në kolonë */
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.control-icon {
+  font-size: 24px;
+  margin: 5px 0; /* Hapësirë midis ikonave */
+  cursor: pointer;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.control-icon:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.1);
+}
+
+.control-icon:active {
+  background-color: #e0e0e0;
+}
+
+.leaflet-routing-container {
+  position: absolute !important; /* Ose 'fixed' nëse dëshironi që të qëndrojë gjithmonë në ekran */
+  top: 10px; /* Zhvendosja nga lart */
+  right: 100px; /* Zhvendosja nga e djathta */
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important; /* Hiq hijet e mundshme */
+}
