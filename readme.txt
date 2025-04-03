@@ -1,10 +1,10 @@
 # Platforma Ueb GIS - Rrjetet lumore dhe rrugore në komunën e Vushtrrisë
 
-Ky repository përmban kodet burimore dhe shtojcat e përdorura në platformën Ueb GIS, pjesë e punimit të diplomës Master në Departamentin e Gjeodezisë, Fakulteti i Ndërtimtarisë, Universiteti i Prishtinës.
+Në përmbajtje gjeni kodet burimore dhe shtojcat e përdorura në platformën Ueb GIS, pjesë e punimit të diplomës Master në Departamentin e Gjeodezisë, Fakulteti i Ndërtimtarisë, Universiteti i Prishtinës.
 
 ---
 
-## 📌 Përmbajtja e repository-t
+## 📌 Përmbajtja 
 
 - **`shtojcat/`**
   - `index.html` – Struktura bazë e aplikacionit.
